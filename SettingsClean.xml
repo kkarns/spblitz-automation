@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<spblitz_automation>
+    
+    <serverUsername01>batman</serverUsername01>
+    <serverUsername02>batman</serverUsername02>
+    <serverUsername03>batman</serverUsername03>
+    <serverUsername04>robin</serverUsername04>
+    <serverUsername05>batman</serverUsername05>
+    <serverUsername06>robin</serverUsername06>
+    <serverUsername07>robin</serverUsername07>
+    <serverUsername08>batman</serverUsername08>
+    <serverUsername09>batman</serverUsername09>
+    <serverUsername10>batman</serverUsername10>
+    <serverUsername11>batman</serverUsername11>
+    <serverUsername12>batman</serverUsername12>
+    
+    
+    <credentialsFile01>credentials-devserver-a.txt</credentialsFile01>
+    <credentialsFile02>credentials-staging-a.txt</credentialsFile02>
+    <credentialsFile03>credentials-dbserver.txt</credentialsFile03>
+    <credentialsFile04>credentials-testserver.txt</credentialsFile04>
+    <credentialsFile05>credentials-graphics-a.txt</credentialsFile05>
+    <credentialsFile06>credentials-developers-b.txt</credentialsFile06>
+    <credentialsFile07>credentials-database-b.txt</credentialsFile07>
+    <credentialsFile08>credentials-graphics-b.txt</credentialsFile08>
+    <credentialsFile09>credentials-developers-c.txt</credentialsFile09>
+    <credentialsFile10>credentials-developers-d.txt</credentialsFile10>
+    <credentialsFile11>credentials-graphics-prod.txt</credentialsFile11>
+    <credentialsFile12>credentials-database-d.txt</credentialsFile12>
+    
+    
+    <serverInstance01>devserver-a</serverInstance01>
+    <serverInstance02>staging-a</serverInstance02>
+    <serverInstance03>dbserver\dev</serverInstance03>
+    <serverInstance04>testserver</serverInstance04>
+    <serverInstance05>graphics-a</serverInstance05>
+    <serverInstance06>developers-b</serverInstance06>
+    <serverInstance07>database-b</serverInstance07>
+    <serverInstance08>graphics-b</serverInstance08>
+    <serverInstance09>developers-c</serverInstance09>
+    <serverInstance10>developers-d</serverInstance10>
+    <serverInstance11>graphics\prod</serverInstance11>
+    <serverInstance12>database-d</serverInstance12>
+    
+    
+    <serverBlitzInDb01>ControlDB</serverBlitzInDb01>
+    <serverBlitzInDb02>ControlDB</serverBlitzInDb02>
+    <serverBlitzInDb03>DBAUtility</serverBlitzInDb03>
+    <serverBlitzInDb04>ControlDB</serverBlitzInDb04>
+    <serverBlitzInDb05>ControlDB</serverBlitzInDb05>
+    <serverBlitzInDb06>ControlDB</serverBlitzInDb06>
+    <serverBlitzInDb07>DBAUtility</serverBlitzInDb07>
+    <serverBlitzInDb08>ControlDB</serverBlitzInDb08>
+    <serverBlitzInDb09>ControlDB</serverBlitzInDb09>
+    <serverBlitzInDb10>ControlDB</serverBlitzInDb10>
+    <serverBlitzInDb11>ControlDB</serverBlitzInDb11>
+    <serverBlitzInDb12>ControlDB</serverBlitzInDb12>
+   
+   
+    <outputServerName>linked.server.name</outputServerName>
+    <outputServerServer>destserver</outputServerServer>
+    <outputDatabaseName>ControlDB</outputDatabaseName>
+    <outputServerUser>batman</outputServerUser>
+    <credentialsFileDest>credentials-destsrv.txt</credentialsFileDest>
+    <outputTableName>BlitzResults</outputTableName>
+   
+</spblitz_automation>
+<!-- Memo to Operator - database passwords are in the $MyDir directory in credentials-xyz.txt -->
+<!--   see https://blogs.technet.microsoft.com/robcost/2008/05/01/powershell-tip-storing-and-using-password-credentials/ -->
