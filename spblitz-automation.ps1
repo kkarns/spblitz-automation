@@ -15,6 +15,7 @@
 ##      -- Thursday, July 26, 2018 3:44 PM       -- initial commit
 ##      -- Wednesday, September 5, 2018 4:25 PM  -- finished functions, a refacatoring round to reduce the nlines
 ##      -- Friday, September 28, 2018 3:38 PM    -- added another server, really time to refactor again
+##      -- Tuesday, October 2, 2018 12:52 PM     -- ok, this is no bueno, after this server i'll refactor
 ##
 ## todo:
 ##
@@ -323,6 +324,7 @@ $serverUsername10    = $ConfigFile.spblitz_automation.serverUsername10
 $serverUsername11    = $ConfigFile.spblitz_automation.serverUsername11   
 $serverUsername12    = $ConfigFile.spblitz_automation.serverUsername12   
 $serverUsername13    = $ConfigFile.spblitz_automation.serverUsername13   
+$serverUsername14    = $ConfigFile.spblitz_automation.serverUsername14   
 
 $serverPassword01    = ""
 $serverPassword02    = ""
@@ -337,6 +339,7 @@ $serverPassword10    = ""
 $serverPassword11    = ""
 $serverPassword12    = ""
 $serverPassword13    = ""
+$serverPassword14    = ""
 
 $credentialsFile01   = $ConfigFile.spblitz_automation.credentialsFile01  
 $credentialsFile02   = $ConfigFile.spblitz_automation.credentialsFile02  
@@ -351,6 +354,7 @@ $credentialsFile10   = $ConfigFile.spblitz_automation.credentialsFile10
 $credentialsFile11   = $ConfigFile.spblitz_automation.credentialsFile11  
 $credentialsFile12   = $ConfigFile.spblitz_automation.credentialsFile12  
 $credentialsFile13   = $ConfigFile.spblitz_automation.credentialsFile13  
+$credentialsFile14   = $ConfigFile.spblitz_automation.credentialsFile14  
 
 $serverInstance01    = $ConfigFile.spblitz_automation.serverInstance01   
 $serverInstance02    = $ConfigFile.spblitz_automation.serverInstance02   
@@ -365,6 +369,7 @@ $serverInstance10    = $ConfigFile.spblitz_automation.serverInstance10
 $serverInstance11    = $ConfigFile.spblitz_automation.serverInstance11   
 $serverInstance12    = $ConfigFile.spblitz_automation.serverInstance12   
 $serverInstance13    = $ConfigFile.spblitz_automation.serverInstance13   
+$serverInstance14    = $ConfigFile.spblitz_automation.serverInstance14   
 
 $serverBlitzInDb01   = $ConfigFile.spblitz_automation.serverBlitzInDb01  
 $serverBlitzInDb02   = $ConfigFile.spblitz_automation.serverBlitzInDb02  
@@ -379,6 +384,7 @@ $serverBlitzInDb10   = $ConfigFile.spblitz_automation.serverBlitzInDb10
 $serverBlitzInDb11   = $ConfigFile.spblitz_automation.serverBlitzInDb11  
 $serverBlitzInDb12   = $ConfigFile.spblitz_automation.serverBlitzInDb12  
 $serverBlitzInDb13   = $ConfigFile.spblitz_automation.serverBlitzInDb13  
+$serverBlitzInDb14   = $ConfigFile.spblitz_automation.serverBlitzInDb14  
 
 $outputServerName    = $ConfigFile.spblitz_automation.outputServerName   
 $outputServerServer  = $ConfigFile.spblitz_automation.outputServerServer 
@@ -404,6 +410,7 @@ LogWrite ("serverUsername10    :  " + $serverUsername10   )
 LogWrite ("serverUsername11    :  " + $serverUsername11   )
 LogWrite ("serverUsername12    :  " + $serverUsername12   )
 LogWrite ("serverUsername13    :  " + $serverUsername13   )
+LogWrite ("serverUsername14    :  " + $serverUsername14   )
 
 LogWrite ("credentialsFile01   :  " + $credentialsFile01  )
 LogWrite ("credentialsFile02   :  " + $credentialsFile02  )
@@ -418,6 +425,7 @@ LogWrite ("credentialsFile10   :  " + $credentialsFile10  )
 LogWrite ("credentialsFile11   :  " + $credentialsFile11  )
 LogWrite ("credentialsFile12   :  " + $credentialsFile12  )
 LogWrite ("credentialsFile13   :  " + $credentialsFile13  )
+LogWrite ("credentialsFile14   :  " + $credentialsFile14  )
 
 LogWrite ("serverInstance01    :  " + $serverInstance01   )
 LogWrite ("serverInstance02    :  " + $serverInstance02   )
@@ -432,6 +440,7 @@ LogWrite ("serverInstance10    :  " + $serverInstance10   )
 LogWrite ("serverInstance11    :  " + $serverInstance11   )
 LogWrite ("serverInstance12    :  " + $serverInstance12   )
 LogWrite ("serverInstance13    :  " + $serverInstance13   )
+LogWrite ("serverInstance14    :  " + $serverInstance14   )
 
 LogWrite ("serverBlitzInDb01   :  " + $serverBlitzInDb01  )
 LogWrite ("serverBlitzInDb02   :  " + $serverBlitzInDb02  )
@@ -446,6 +455,7 @@ LogWrite ("serverBlitzInDb10   :  " + $serverBlitzInDb10  )
 LogWrite ("serverBlitzInDb11   :  " + $serverBlitzInDb11  )
 LogWrite ("serverBlitzInDb12   :  " + $serverBlitzInDb12  )
 LogWrite ("serverBlitzInDb13   :  " + $serverBlitzInDb13  )
+LogWrite ("serverBlitzInDb14   :  " + $serverBlitzInDb14  )
 
 LogWrite ("outputServerName    :  " + $outputServerName   )
 LogWrite ("outputServerServer  :  " + $outputServerServer )
@@ -778,7 +788,6 @@ RunSpBlitz -serverUsername $serverUsername -serverPassword $serverPassword -serv
 RemoveTempLink -serverUsername $serverUsername -serverPassword $serverPassword -serverInstance $serverInstance -serverBlitzInDb $serverBlitzInDb -OutputServerName $OutputServerName 
 
 
-
 ##
 ## serverinstance: 13 #####################################################################################################################################
 ##
@@ -794,6 +803,32 @@ $serverUsername      =  $serverUsername13
 $serverPassword      =  $serverPassword13       
 $serverInstance      =  $serverInstance13
 $serverBlitzInDb     =  $serverBlitzInDb13
+
+## build a temporary link back to outputServer
+BuildTempLink -serverUsername $serverUsername -serverPassword $serverPassword -serverInstance $serverInstance -serverBlitzInDb $serverBlitzInDb -OutputServerName $OutputServerName -OutputServerServer $OutputServerServer -OutputDatabaseName $OutputDatabaseName -OutputServerUser $OutputServerUser -OutputServerPass $OutputServerPass 
+     
+## run sp_blitz with @outputsername = $outputServerName and @tablename = $outputTableName == 'BlitzResults'
+RunSpBlitz -serverUsername $serverUsername -serverPassword $serverPassword -serverInstance $serverInstance -serverBlitzInDb $serverBlitzInDb -OutputServerName $OutputServerName -OutputDatabaseName $OutputDatabaseName -OutputTableName $OutputTableName    
+
+## remove the temporary link to outputServer
+RemoveTempLink -serverUsername $serverUsername -serverPassword $serverPassword -serverInstance $serverInstance -serverBlitzInDb $serverBlitzInDb -OutputServerName $OutputServerName 
+
+
+##
+## serverinstance: 14 #####################################################################################################################################
+##
+
+## extract password for this server instance
+$tryCredentialsFile = $MyDir+ "\" + $credentialsFile14
+$tryServerUsername  = $serverUsername14
+$tryServerPassword  = $serverPassword14
+$serverPassword14 = ExtractPassword -tryCredentialsFile $tryCredentialsFile -tryServerUsername $tryServerUsername -tryServerPassword $tryServerPassword
+
+## other parameters form .XML file
+$serverUsername      =  $serverUsername14
+$serverPassword      =  $serverPassword14       
+$serverInstance      =  $serverInstance14
+$serverBlitzInDb     =  $serverBlitzInDb14
 
 ## build a temporary link back to outputServer
 BuildTempLink -serverUsername $serverUsername -serverPassword $serverPassword -serverInstance $serverInstance -serverBlitzInDb $serverBlitzInDb -OutputServerName $OutputServerName -OutputServerServer $OutputServerServer -OutputDatabaseName $OutputDatabaseName -OutputServerUser $OutputServerUser -OutputServerPass $OutputServerPass 
