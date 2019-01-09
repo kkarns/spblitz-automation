@@ -61,7 +61,7 @@
     <outputServerServer>destserver</outputServerServer>
     <outputDatabaseName>ControlDB</outputDatabaseName>
     <outputServerUser>batman</outputServerUser>
-    <credentialsFileDest>credentials-destsrv.txt</credentialsFileDest>
+    <credentialsDest>credentials-destsrv.txt</credentialsDest>
     <outputTableName>BlitzResults</outputTableName>
    
 </spblitz_automation>
