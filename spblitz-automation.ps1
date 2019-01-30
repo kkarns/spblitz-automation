@@ -16,6 +16,7 @@
 ##      -- Wednesday, September 5, 2018 4:25 PM  -- finished functions, a refacatoring round to reduce the nlines
 ##      -- Friday, September 28, 2018 3:38 PM    -- added another server, really time to refactor again
 ##      -- Tuesday, January 8, 2019 4:21 PM      -- refactoring to use a hashtable for values from Settings.xml
+##      -- Wednesday, January 30, 2019 8:33 AM   -- added @BringThePain = 1 to accomodate growth
 ##
 ## todo:
 ##
@@ -224,7 +225,7 @@ Function RunSpBlitz
 ##  $otn  $OutputTableName     6  
 
 $command = @"
-sqlcmd -U {0} -P {1} -S {2} -d {3} -Q "EXEC [dbo].[sp_Blitz] @CheckUserDatabaseObjects = 1, @CheckProcedureCache = 0, @OutputType = 'COUNT', @OutputProcedureCache = 0, @CheckProcedureCacheFilter = NULL, @CheckServerInfo = 1, @OutputServerName = '{4}', @OutputDatabaseName = '{5}', @OutputSchemaName = 'dbo', @OutputTableName = '{6}', @OutputXMLasNVARCHAR = 1"
+sqlcmd -U {0} -P {1} -S {2} -d {3} -Q "EXEC [dbo].[sp_Blitz] @CheckUserDatabaseObjects = 1, @CheckProcedureCache = 0, @OutputType = 'COUNT', @OutputProcedureCache = 0, @CheckProcedureCacheFilter = NULL, @CheckServerInfo = 1, @OutputServerName = '{4}', @OutputDatabaseName = '{5}', @OutputSchemaName = 'dbo', @OutputTableName = '{6}', @OutputXMLasNVARCHAR = 1, @BringThePain = 1"
 "@ -f $serverUsername, $serverPassword, $serverInstance, $serverBlitzInDb, $OutputServerName, $OutputDatabaseName, $OutputTableName   
 
 Write-Output "--------------------------------------"
